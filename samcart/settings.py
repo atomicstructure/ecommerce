@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ie=eqei&_6sji3z61o!^tmizi-sa)lq=71#p=@@vn2c4qyuz)m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -65,6 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'category.context_processors.categories',
             ],
         },
     },
