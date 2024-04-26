@@ -6,7 +6,7 @@ class Products(models.Model):
     product_name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     description = models.TextField(max_length=500, blank=True)
-    price = models.FloatField()
+    price = models.DecimalField( max_digits=10, decimal_places=2, default=0.00)
     digital = models.BooleanField(default=False, null=True, blank=False)
     image = models.ImageField(upload_to='photos/product')
     stock = models.IntegerField()
