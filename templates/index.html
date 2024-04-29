@@ -32,7 +32,7 @@
                   <span class="price">₦{{ product.price }}</span>
                   <del class="price-old">₦{{ product.price }}</del>
                 </div> <!-- price-wrap.// -->
-                <a href="{% url 'add_cart' product.id %}" class="btn btn-block btn-primary">Add to cart</a>
+                <a href="{{ product.get_url }}" class="btn btn-block btn-primary">View Details</a>
               </figcaption>
             </div>
           </div> <!-- col.// -->
