@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Products
+from .models import Products, Variation
 # Register your models here.
 
 class ProductAdmin(admin.ModelAdmin):
@@ -11,4 +11,16 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ('product_name', 'category')
     list_per_page = 20
 
+
+class VariationAdmin(admin.ModelAdmin):
+    list_display = ('product', 'variation_category', 'variation_value', 'is_active')
+    list_editable = ('is_active',)
+    list_filter = ('product', 'variation_category', 'variation_value')
+    search_fields = ('product', 'variation_category', 'variation_value')
+
+
 admin.site.register(Products, ProductAdmin)
+admin.site.site_header = 'SamMart E-commerce Admin'
+admin.site.site_title = 'SamMart E-commerce Admin Portal'
+admin.site.index_title = 'Welcome to SamMart E-commerce Admin Portal'
+admin.site.register(Variation, VariationAdmin)
