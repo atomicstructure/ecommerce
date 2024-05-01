@@ -28,16 +28,15 @@
               <div class="row">
                 <div class="item-option-select">
                   <h6>Choose Color</h6>
-                  <select name="color" class="form-control">
-                    <option value="red">
-                      {% for color in single_product.color.all %}
-                        <option value="{{ color }}">{{ color }}</option>
+                  <select name="color" class="form-control" required>
+                    <option value="" disabled selected>Choose Color</option>
+                      {% for color in single_product.variation_set.all %}
+                        <option value="{{ color.variation_value }}">{{ color.variation_value }}</option>
                       {% endfor %}
-                    </option>
                   </select>
                 </div>
               </div> <!-- row.// -->
-              <div class="row">
+              {% comment %} <div class="row">
                 <div class="item-option-select">
                   <h6>Select Size</h6>
                   <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
@@ -47,7 +46,7 @@
                     <label class="btn btn-light"><input type="radio" name="radio_color" />XL</label>
                   </div>
                 </div>
-              </div> <!-- row.// -->
+              </div> <!-- row.// --> {% endcomment %}
               <hr />
               {% if single_product.stock <= 0 %}
                 <h5>Out Of Stock</h5>
