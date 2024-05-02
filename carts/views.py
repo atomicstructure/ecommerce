@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from store.models import Products
 from .models import Cart, CartItem
 from django.core.exceptions import ObjectDoesNotExist
-from django.contrib.sessions.models import Session
+
 
 
 def _cart_id(request):
@@ -18,6 +18,12 @@ def _cart_id(request):
 
 
 def add_cart(request, product_id):
+    if request.method == 'POST':
+        for item in request.POST():
+            key = item
+            value = request.POST[key]
+
+
     product = Products.objects.get(id=product_id)
     try:
         cart = Cart.objects.get(cart_id=_cart_id(request))
