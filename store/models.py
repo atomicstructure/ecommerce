@@ -22,13 +22,6 @@ class Products(models.Model):
     def __str__(self):
         return self.product_name
 
-    @property
-    def imageURL(self):
-        try:
-            url = self.image.url
-        except:
-            url = ''
-        return url
     
 class VariationManager(models.Manager):
     def colors(self):

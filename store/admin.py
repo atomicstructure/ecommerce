@@ -20,7 +20,7 @@ class VariationAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Products, ProductAdmin)
+admin.site.register(Variation, VariationAdmin)
 admin.site.site_header = 'SamMart E-commerce Admin'
 admin.site.site_title = 'SamMart E-commerce Admin Portal'
 admin.site.index_title = 'Welcome to SamMart E-commerce Admin Portal'
-admin.site.register(Variation, VariationAdmin)
