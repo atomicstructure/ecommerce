@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 django = "*"
 pillow = "*"
+django-countries = "*"
+django-cities-light = "*"
 
 [dev-packages]
 
