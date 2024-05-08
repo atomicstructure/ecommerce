@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django_countries import countries
 
 from account.forms import AccountForm
 from account.models import Account
+from django.contrib import messages
 # Create your views here.
 
 
@@ -15,10 +16,13 @@ def register(request):
             email = form.cleaned_data.get("email")
             phone_number = form.cleaned_data.get("phone_number")
             password = form.cleaned_data.get("password")
-            username = email.split("@")[0]
+            username = email.split('@')[0]
             user = Account.objects.create_user(first_name=first_name, last_name=last_name, phone_number=phone_number, email=email, password=password, username=username)
             user.phone_number = phone_number
+            user.username = f"{username}_{user.id}"
             user.save()
+            messages.success(request, "Account created successfully")
+            return redirect("register")
     else:
         form = AccountForm()
         

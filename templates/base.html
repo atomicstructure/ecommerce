@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <title>GreatKart | One of the Biggest Online Shopping Platform</title>
+    {% comment %} <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> {% endcomment %}
 
     <link href="{% static 'images/favicon.ico'%}" rel="shortcut icon" type="image/x-icon" />
 
@@ -35,6 +36,9 @@
       // jquery ready start
       $(document).ready(function () {
         // jQuery code
+        setTimeout(function () {
+          $('#message').fadeOut('fast');
+        }, 4000); // <-- time in milliseconds
       })
       // jquery end
     </script>
