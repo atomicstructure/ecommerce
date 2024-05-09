@@ -139,7 +139,7 @@ from django.contrib.messages import constants as messages
 from decouple import config
 
 MESSAGE_TAGS = {
-    messages.ERROR: "Danger",
+    messages.ERROR: "danger",
 }
 
 # SMTP CONFIGURATION
