@@ -9,6 +9,7 @@ pillow = "*"
 django-countries = "*"
 django-cities-light = "*"
 python-decouple = "*"
+requests = "*"
 
 [dev-packages]
 
