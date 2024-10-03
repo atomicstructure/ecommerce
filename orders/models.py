@@ -8,6 +8,8 @@ from store.models import Products, Variation
 class Payment(models.Model):
     user = models.ForeignKey(Account, on_delete=models.CASCADE)
     payment_id = models.CharField(max_length=100)
+    payer_id = models.CharField(max_length=100, null=True)
+    payer_names = models.CharField(max_length=100, null=True)
     payment_method = models.CharField(max_length=100)
     amount_paid = models.CharField(max_length=100) # This is the total amount paid by a customer
     status = models.CharField(max_length=100, null=True)

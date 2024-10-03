@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from django.contrib.messages import constants as messages
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -136,8 +138,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 
 from django.conf import settings
-from django.contrib.messages import constants as messages
-from decouple import config
+
+
 
 MESSAGE_TAGS = {
     messages.ERROR: "danger",

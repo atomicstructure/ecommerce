@@ -178,23 +178,21 @@
             sendData();
             function sendData() {
               fetch(url, {
-                  method: 'POST',  
-                  headers: {
-                      "Content-type": "application/json",
-                      "X-CSRFToken": csrftoken,
-                  },
-                  body: JSON.stringify({
-                      orderID: orderID,
-                      transID: details.id,
-                      payment_method: payment_method,
-                      status: details.state,
-                  })
-              })
-              .then((response) => response.json())
-              .then((data) => {
-                  console.log(data);
-              })
-          }
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'X-CSRFToken': csrftoken,
+                },
+                body: JSON.stringify({
+                  orderID: orderID,
+                  payment_method: payment_method,
+                  paymentID: details.id,
+                  payerID: details.payer.payer_info.payer_id,
+                  paymentStatus: details.state,
+                  payerNames: details.payer.payer_info.first_name + ' ' + details.payer.payer_info.last_name,
+                }),
+              }) 
+            }
           });
         }
 
