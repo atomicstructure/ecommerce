@@ -4,7 +4,7 @@ from django.shortcuts import render
 
 from django.shortcuts import render, redirect, get_object_or_404
 
-from store.models import Products, Variation
+from store.models import Product, Variation
 from .models import Cart, CartItem
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
@@ -20,7 +20,7 @@ def _cart_id(request):
 
 def add_cart(request, product_id):
     current_user = request.user
-    product = Products.objects.get(id=product_id)
+    product = Product.objects.get(id=product_id)
     # Check if the user is authenticated
     if current_user.is_authenticated:
         product_variation = []
@@ -159,7 +159,7 @@ def cart(request, total=0, quantity=0, cart_items=None):
 
 def remove_cart(request, product_id, cart_item_id):
     
-    product = get_object_or_404(Products, id=product_id)
+    product = get_object_or_404(Product, id=product_id)
 
     try:
         if request.user.is_authenticated:
@@ -179,7 +179,7 @@ def remove_cart(request, product_id, cart_item_id):
 
 def delete_cart_item(request, product_id, cart_item_id):
     
-    product = get_object_or_404(Products, id=product_id)
+    product = get_object_or_404(Product, id=product_id)
     try:
         if request.user.is_authenticated:
             cart_item = CartItem.objects.get(product=product, user=request.user, id=cart_item_id)

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Products, Variation
+from .models import Product, Variation
 # Register your models here.
 
 class ProductAdmin(admin.ModelAdmin):
@@ -19,7 +19,7 @@ class VariationAdmin(admin.ModelAdmin):
     search_fields = ('product', 'variation_category', 'variation_value')
 
 
-admin.site.register(Products, ProductAdmin)
+admin.site.register(Product, ProductAdmin)
 admin.site.register(Variation, VariationAdmin)
 admin.site.site_header = 'SamMart E-commerce Admin'
 admin.site.site_title = 'SamMart E-commerce Admin Portal'

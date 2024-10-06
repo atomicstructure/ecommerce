@@ -5,6 +5,9 @@ from django.shortcuts import redirect, render
 from carts.models import CartItem
 from orders.forms import OrderForm
 from orders.models import Order, Payment, OrderProduct
+from store.models import Product
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
 
 # Create your views here.
 
@@ -41,21 +44,32 @@ def payments(request):
         order_product.ordered = True
         order_product.save()
         
+
+        cart_item = CartItem.objects.get(id=item.id)
+        product_variation = cart_item.variations.all()
+        order_product = OrderProduct.objects.get(id=order_product.id)
+        order_product.variation.set(product_variation)
+        order_product.save()
     # Reduce the quantity of the sold products
-    
+        product = Product.objects.get(id=item.product_id)
+        product.stock -= item.quantity
+        product.save()
 
     # Clear the Cart
-   
+    CartItem.objects.filter(user=request.user).delete()
 
     # Send order received email to customer
-
+    mail_subject = "Thank you for your order!"
+    message = render_to_string("orders/order_received_email.html", {
+                "user": user,
+                "order": order,
+            })
+    to_email = request.user.email
+    send_email = EmailMessage(mail_subject, message, to=[to_email])
+    send_email.send()
 
     # Send order number and transaction id back to the client
-    data = {
-        'order_number': order.order_number,
-        'transaction_id': payment.payment_id,
-    }
-    return render(request, 'orders/payments.html')
+    
 
 
 def place_order(request, total=0, quantity=0,):
