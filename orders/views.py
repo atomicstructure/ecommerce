@@ -13,15 +13,20 @@ from django.template.loader import render_to_string
 
 def payments(request):
     body = json.loads(request.body)
-    order = Order.objects.get(user=request.user, is_ordered=False, order_number=body['orderID'])
+    try:
+        order = Order.objects.get(user=request.user, is_ordered=False, order_number=body['orderID'])
+    except Order.DoesNotExist:
+        return JsonResponse({'error': 'Order not found'}, status=404)
 
     # Store transaction details inside Payment model
     payment = Payment(
         user = request.user,
-        payment_id = body['transID'],
+        payment_id = body['paymentID'],
         payment_method = body['payment_method'],
+        payer_id= body['payerID'],
+        payer_names=body['payerNames'],
         amount_paid = order.order_total,
-        status = body['status'],
+        status = body['paymentStatus'],
     )
     payment.save()
 
