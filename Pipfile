@@ -4,14 +4,16 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
+django = "4.1"
 pillow = "*"
 django-countries = "*"
 django-cities-light = "*"
 python-decouple = "*"
 requests = "*"
+django-environ = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "*"
+python_version = "3.11"

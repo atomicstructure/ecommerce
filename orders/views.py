@@ -13,11 +13,8 @@ from django.template.loader import render_to_string
 
 def payments(request):
     body = json.loads(request.body)
-    try:
-        order = Order.objects.get(user=request.user, is_ordered=False, order_number=body['orderID'])
-    except Order.DoesNotExist:
-        return JsonResponse({'error': 'Order not found'}, status=404)
-
+    order = Order.objects.get(user=request.user, is_ordered=False, order_number=body['orderID'])
+    
     # Store transaction details inside Payment model
     payment = Payment(
         user = request.user,
